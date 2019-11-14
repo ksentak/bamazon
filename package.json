@@ -1,0 +1,23 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Back-end Storefront created with Node and MySQL",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksentak/bamazon.git"
+  },
+  "author": "Keaton Sentak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ksentak/bamazon/issues"
+  },
+  "homepage": "https://github.com/ksentak/bamazon#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mysql": "^2.17.1"
+  }
+}
