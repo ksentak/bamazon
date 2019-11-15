@@ -2,11 +2,11 @@ require("dotenv").config();
 var mysql = require("mysql");
 
 var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
+  host: process.env.HOST,
+  port: process.env.PORT,
+  user: process.env.USER,
   password: process.env.MYSQL_PWD,
-  database: "test_db"
+  database: process.env.DATABASE
 });
 
 connection.connect(function(err) {
