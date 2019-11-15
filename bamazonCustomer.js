@@ -1,5 +1,7 @@
 require("dotenv").config();
 var mysql = require("mysql");
+const cTable = require('console.table');
+
 
 var connection = mysql.createConnection({
   host: process.env.HOST,
@@ -14,14 +16,11 @@ connection.connect(function(err) {
     afterConnection();
   });
 
-  //MAKE SURE TO CORRECTLY CHANGE DATABASE NAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   function afterConnection() {
     connection.query("SELECT * FROM products", function(err, res) {
       if (err) throw err;
-      for (var i = 0; i < res.length; i++) {
-        console.log(res[i].id + " | " + res[i].item + " | " + res[i].price + " | " + res[i].quantity);
-      }
-      console.log("-----------------------------------");
+
+      console.table(res);
       connection.end();
     });
 }
