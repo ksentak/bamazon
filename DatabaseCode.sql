@@ -40,4 +40,4 @@ INSERT INTO products (item, price, quantity)
 VALUES ("Cozy Sweatshirt", 48.99, 50);
 
 INSERT INTO products (item, price, quantity)
-VALUES ("Adidas UltraBoost Sneakers", 179.99, 70);
+VALUES ("Adidas UltraBoost Sneakers", 179.99, 85);
