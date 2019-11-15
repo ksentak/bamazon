@@ -18,7 +18,10 @@ connection.connect(function(err) {
   function afterConnection() {
     connection.query("SELECT * FROM products", function(err, res) {
       if (err) throw err;
-      console.log(res);
+      for (var i = 0; i < res.length; i++) {
+        console.log(res[i].id + " | " + res[i].item + " | " + res[i].price + " | " + res[i].quantity);
+      }
+      console.log("-----------------------------------");
       connection.end();
     });
 }
