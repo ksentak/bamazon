@@ -57,6 +57,7 @@ function purchase() {
           if (res.length == 0) {
             console.log("ERROR!")
           }
+          
           else {
             var purchase = res[0];
 
@@ -65,12 +66,18 @@ function purchase() {
             }
 
             else { 
-              console.log("Success! Your order has placed!")
-              // connection.query("UPDATE products SET quantity = " +(purchase.quantity - quantity)+ "WHERE id = "+item+";")
-            }
+              console.log("Success! Your order is being placed!")
+              
+              connection.query("UPDATE products SET quantity = " +(purchase.quantity - quantity)+ " WHERE id = "+item+";",
+              function (err, res) {
+                if (err) throw err;
+
+                console.log("Order placed! Your total is $" +(purchase.price * quantity)+ ".")
+                connection.end();
+              } 
+            )}
           }
 
         });
-
     });
 }
