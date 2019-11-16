@@ -1,9 +1,10 @@
+//Require all node packages
 require("dotenv").config();
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 const cTable = require('console.table');
 
-
+//Connection to MySQL
 var connection = mysql.createConnection({
   host: process.env.HOST,
   port: process.env.PORT,
@@ -12,11 +13,13 @@ var connection = mysql.createConnection({
   database: process.env.DATABASE
 });
 
+//Initial connection
 connection.connect(function (err) {
   if (err) throw err;
   begin();
 });
 
+//Function that displays table and calls on user to purchase an item
 function begin() {
   connection.query("SELECT * FROM products", function (err, res) {
     if (err) throw err;
@@ -25,6 +28,7 @@ function begin() {
   });
 }
 
+//Purchase function that takes in user input with inquirer, then makes a call to the database, which checks if enough items are in stock for purchase and then allows a purchase to go through if enough product is in stock
 function purchase() {
   inquirer
     .prompt([
@@ -55,14 +59,19 @@ function purchase() {
           if (err) throw err;
 
           if (res.length == 0) {
-            console.log("ERROR!")
+            console.log("\nERROR!")
+            console.log("\n----------------------------------------------------------\n")
+            console.log("\nPLEASE TRY AGAIN!!!!!\n")
+            begin();
           }
           
           else {
             var purchase = res[0];
 
             if (quantity > purchase.quantity) {
-              console.log("We're sorry but there is not enough of this item in stock for you to purchase.")
+              console.log("\nWe're sorry but there is not enough of this item in stock for you to purchase.\n")
+              console.log("\nPlease try again!\n")
+              begin();              
             }
 
             else { 
@@ -81,3 +90,5 @@ function purchase() {
         });
     });
 }
+
+
