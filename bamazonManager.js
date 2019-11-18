@@ -43,7 +43,6 @@ function startMenu() {
                 case "Add to inventory":
                     console.log("\nLet's add some items...");
                     addInventory();
-                    connection.end();
                     break;
                 case "Add new product":
                     console.log("Add");
